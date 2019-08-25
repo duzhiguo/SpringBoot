@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>图书管理共享系统首页</title>
+    <meta charset="UTF-8">
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">-->
+<!--    缩小-->
+    <link href="/css/main.css" rel="stylesheet" type="text/css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        //页面加载时，生成随机验证码
+        window.onload=function(){
+            createCode(4);
+        }
+
+        //生成验证码的方法
+        function createCode(length) {
+            var code = "";
+            var codeLength = parseInt(length); //验证码的长度
+            var checkCode = document.getElementById("checkCode");
+            ////所有候选组成验证码的字符，当然也可以用中文的
+            var codeChars = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+                'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+            //循环组成验证码的字符串
+            for (var i = 0; i < codeLength; i++)
+            {
+                //获取随机验证码下标
+                var charNum = Math.floor(Math.random() * 62);
+                //组合成指定字符验证码
+                code += codeChars[charNum];
+            }
+            if (checkCode)
+            {
+                //为验证码区域添加样式名
+                checkCode.className = "code";
+                //将生成验证码赋值到显示区
+                checkCode.innerHTML = code;
+            }
+        }
+
+        //检查验证码是否正确
+        function validateCode()
+        {
+            //获取显示区生成的验证码
+            var checkCode = document.getElementById("checkCode").innerHTML;
+            //获取输入的验证码
+            var inputCode = document.getElementById("inputCode").value;
+            console.log(checkCode);
+            console.log(inputCode);
+            if (inputCode.length <= 0)
+            {
+                alert("请输入验证码！");
+            }
+            else if (inputCode.toUpperCase() != checkCode.toUpperCase())
+            {
+                alert("验证码输入有误！");
+                createCode(4);
+            }
+            else
+            {
+                alert("验证码正确！");
+            }
+        }
+    </script>
+</head>
+<body id="body">
+<div id="login" >
+    <p>
+    <h2 align="center" id="welcome">欢迎登陆图书共享系统 </h2>
+    </p>
+    <form  method="post"  th:action="@{/userLogin}" th:object="${user}">
+
+        <div class="input-group">
+            <span class="input-group-addon">账 号:</span>
+            <input type="text" class="form-control"  required = required  placeholder="账号" name="account">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">密 码:</span>
+            <input type="password" class="form-control"  required = required placeholder="密码" name="passWord">
+        </div>
+        <br>
+        <div style="text-align: right" ><small style="color: azure;text-align:right"><a th:href="face">点击我进行人脸登录</a></small>
+        </div>
+       <br>
+
+
+        <button type="submit"  class="btn btn-primary">进入</button>
+        <a th:href="@{/register}" id="zhuce" > <button type="button" class="btn btn-default">注册</button></a>
+
+    </form>
+     　
+</div>
+
+</body>
+</html>

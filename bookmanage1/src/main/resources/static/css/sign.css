@@ -1,0 +1,23 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background: url("/images/tushu.jpg") no-repeat top left;
+    background-size: cover;
+}
+#sign{
+    width: 390px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#text1{
+    text-align: center;
+
+    color: #480000;
+}
+#chong{
+    float: right;
+}

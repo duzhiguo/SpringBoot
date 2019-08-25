@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Build Error Page Responsive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link href="/css/error.css" rel="stylesheet" type="text/css" media="all"/>
+</head>
+<body>
+<div class="error_main">
+    <div class="content">
+        <h1>Build Error Page</h1>
+        <div class="error_content">
+
+            <h2>Sorry, Page not found!</h2>
+
+
+            <a class="b-home" th:href="@{/login}">Back to Home</a>
+        </div>
+        <div class="footer">
+            <p>&copy; Build Error Page 2019. All Rights Reserved | Design by <a th:href="@{/welcome}" target="blank">图书共享</a></p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

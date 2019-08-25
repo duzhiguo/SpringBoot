@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎注册图书共享系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="/css/sign.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body id="body">
+<div id="sign">
+    <h1 id="text1"> 欢迎注册图书共享系统 </h1>
+    <br><br>
+    <form  method="post" th:action="@{/registerUser}" th:object="${user}">
+        <div>
+            <div class="input-group">
+                <span class="input-group-addon"> <span class="glyphicon glyphicon-send"
+                                                       style="color: rgb(72, 0, 0);"></span></span>
+                <input type="text" class="form-control" required=required placeholder="账号" name="account">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon"> <span class="glyphicon glyphicon-user"
+                                                       style="color: rgb(72, 0, 0);"></span></span>
+                <input type="text" class="form-control" required=required placeholder="姓名" name="name">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon"> <span class="glyphicon glyphicon-lock"
+                                                       style="color: rgb(72, 0, 0);"></span></span>
+                <input type="password" class="form-control" required=required placeholder="密码" name="passWord">
+            </div>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-primary">提&nbsp;交</button>
+            <button type="reset" class="btn btn-primary" id="chong">重&nbsp;置</button>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

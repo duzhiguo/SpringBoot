@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>人脸识别</title>
+    <link href="/css/face.css" rel="stylesheet" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body id="body">
+<h4>  认证</h4>
+<video width="400" height="300"></video>
+
+<!-- 图像画布 -->
+<canvas width="200" height="150"></canvas>
+<button id="" onclick="face_login()" class="btn btn-info"><i class="icon-play"></i>&nbsp;人脸认证</button>
+<script>
+    function $(elem){
+        return document.querySelector(elem);
+    }
+    var canvas = $('canvas'),
+        context = canvas.getContext('2d'),
+        video = $('video'),
+        snap = $('#snap'),
+        upload = $('#upload'),
+        uploaded = $('#uploaded'),
+        mediaStreamTrack;
+    //打开摄像头
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({
+            video: true,
+        }).then(function(stream) {
+            mediaStreamTrack = typeof stream.stop === 'function' ? stream : stream.getTracks()[1];
+            video.srcObject = stream;
+            video.play();
+        });
+    }else if (navigator.getMedia) {
+        navigator.getMedia({
+            video: true
+        }, function(stream) {
+            mediaStreamTrack = stream.getTracks()[0];
+            video.srcObject = stream;
+            video.play();
+        });
+    }
+    //人脸识别参考文档：https://cloud.baidu.com/doc/FACE/
+    function face_login(){
+        context.drawImage(video, 0, 0, 200, 150);
+        jQuery.post('faceResign', {           //指定发送图片到的servlet
+            snapData: canvas.toDataURL('image/jpg')
+        }).done(function(rs) {
+            console.log(typeof (rs)+rs);
+
+            if(rs=='0'){
+                alert("认证成功！");
+                setTimeout("javascript:location.href='/welcome'", 1000);
+
+            }
+            else {
+                alert("请重新拍照")
+            }
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>书籍信息</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/css/look.css">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="for">
+    <p>
+    <h2 align="center ">这是精心为您推荐的书籍！</h2>
+    </p>
+    <br><br>
+    <table class="table table-hover">
+        <tr>
+            <td>书籍编号</td>
+            <td>书籍名字</td>
+            <td>可借阅书籍数量</td>
+            <td>书籍出版社</td>
+            <td>书籍类目</td>
+            <td>发布人</td>
+            <td>发布时间</td>
+        </tr>
+        <tr th:each="book,start:${recommentbook}">
+            <td th:text="${book.bno}"></td>
+            <a href="http://www.baidu.com">
+                <td th:text="${book.bname}"></td>
+            </a>
+            <td th:text="${book.bnumber}"></td>
+            <td th:text="${book.btest}"></td>
+            <td th:text="${book.btype}"></td>
+            <td th:text="${book.publisher}"></td>
+            <td th:text="${book.btime}"></td>
+        </tr>
+
+
+    </table>
+</div>
+</body>
+</html>

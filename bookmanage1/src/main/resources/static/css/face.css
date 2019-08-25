@@ -1,0 +1,14 @@
+*{
+    margin:0px;
+    padding: 0px;
+}
+html,body {
+    width: 100%;
+    height: 100%;
+
+}
+body{
+    min-width:900px;
+    background: url("/images/face.jpg") no-repeat top left;
+    background-size: cover;
+}
