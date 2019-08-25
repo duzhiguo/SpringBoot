@@ -1,0 +1,46 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    min-width:1300px;
+}
+
+#top{
+   /*// background-size:cover;*/
+    width:100%;
+    height: auto;
+}
+
+
+a {
+    text-decoration:none;
+    tab-size: 12px;
+}
+#aa{
+    float: right;
+}
+#bb{
+    margin-right:14px;
+    height: 60px;
+
+}
+#topul{
+    margin-right: 140px;
+    width: 90px;
+}
+#bake{
+    background: url("/images/bake.png") no-repeat top left;
+    background-size: cover;
+}
+footer{
+    margin:0 auto;
+    text-align: center;
+}
+
+
+
+
+
+
+

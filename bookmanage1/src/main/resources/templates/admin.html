@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>图书管理共享系统后台</title>
+    <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link href="/css/admin.css" rel="stylesheet" type="text/css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body id="body">
+<div>
+     <p  id ="font1">
+           欢迎您的到来！
+          　
+          <br> <br> <br>
+         书籍是人类进步的阶梯 !
+
+     </p>
+</div>
+<div id="login" >
+    <p>
+    <h2 align="center" id="welcome">欢迎登陆共享系统后台 </h2>
+    <br>
+    </p>
+    <form  method="post"  th:action="@{/adminlogin}" th:object="${admin}">
+
+        <div class="input-group">
+            <span class="input-group-addon">账 号:</span>
+            <input type="text" class="form-control"  required = required  placeholder="账号" name="account">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">密 码:</span>
+            <input type="password" class="form-control"  required = required placeholder="密码" name="passWord">
+        </div>
+        <br>
+
+
+        <br>
+
+        <button type="submit"  class="btn btn-primary">进入</button>
+<!--        <a th:href="@{/register}" id="zhuce" > -->
+            <button type="reset" class="btn btn-default" style="float: right">清除</button>
+<!--        </a>-->
+
+    </form>
+</div>
+
+</body>
+</html>

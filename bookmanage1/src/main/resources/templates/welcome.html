@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html   xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>欢迎到来图书共享系统！</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="/css/welcome.css">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .text-popup {
+            animation: textPopup 2s;
+            color: #5b9ee3;
+            user-select: none;
+            white-space: nowrap;
+            position: absolute;
+            z-index: 99;
+        }
+        @keyframes textPopup {
+            0%, 100% {
+                opacity: 0;
+            }
+            5% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-50px);
+            }
+        }
+    </style>
+    <script>
+        function stop() {
+
+            return false;
+
+        }
+
+        document.oncontextmenu = stop;
+
+    </script>
+</head>
+<body >
+<div>
+<!--    <%&#45;&#45;             <img src="/images/top.png">&#45;&#45;%>-->
+    <img src="/images/top.png" class="img-responsive" alt="图书馆.png" id="top">
+
+</div>
+
+<div id ="aa">
+    <ul class="nav nav-tabs" id="bb">
+<!--        @{/welcome}-->
+        <li ><a th:href="@{/index}" target="main" >主页</a></li>
+        <li><a th:if="${#strings.length(session.account)>5}" th:href="@{/facer}">人脸认证</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown"  >
+                个人 <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a th:href="@{/person}" target="main">借阅信息</a></li>
+<!--                <%&#45;&#45;                        <li><a href="#">借阅</a></li>&#45;&#45;%>-->
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" th:if="${#strings.length(session.account)>5}">
+                资讯<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a  th:if="${#strings.length(session.account)>5}" th:href="@{/recommend}" target="main">书籍推荐</a></li>
+
+            </ul>
+        </li>
+        <li><a href="#">
+            用户 : <strong th:text="${session.name}"></strong>
+        </a></li>
+        <li><a th:href="@{/signOut}">退出</a></li>
+
+    </ul>
+</div>
+<br><br>
+<div id="bake">
+    <table width="100%" border="0" cellspacing="1" cellpadding="0">
+        <tr>
+            <td width="120" valign="top">
+                <div id="contain">
+
+                    <ul class="nav nav-pills nav-stacked">
+<!--                        <li class="active"><a href="#">Home</a></li>-->
+                        <li><a th:href="@{/allbook}"  th:if="${#strings.length(session.account)>5}" target="main">所有书籍</a></li>
+
+                        <li><a th:href="@{/search}" target="main">查询书籍</a></li>
+                        <li><a th:href="@{/addbook}" target="main">添加书籍</a></li>
+                        <li><a th:href="@{/borrow}" target="main">借阅书籍</a></li>
+                        <li><a th:href="@{/recover}" target="main">还书籍</a></li>
+                        <li><a th:if="${#strings.length(session.account)<5}" th:href="@{/usemanage}" target="main">用户管理</a></li>
+                        <li><a th:if="${#strings.length(session.account)<5}" th:href="@{/allbook}" target="main">图书信息查询统计</a></li>
+
+
+                    </ul>
+                </div>
+            </td>
+
+            <td valign="top" height="800px" width="1200px"><iframe name="main" th:src="@{/index}" frameborder="0" scrolling="auto" width="100%" height="100%"></iframe></td>
+<!--          <td align="left">-->
+<!--              <img src="https://www.easyicon.net/api/resizeApi.php?id=1233369&size=128" >-->
+<!--          </td>-->
+        </tr>
+        
+    </table>
+</div>
+<div id="footer" align="center">
+    <div style="height:10px;"></div>
+    <section class='footer'>
+        <h4>Copyright &copy; 2019.Company name All rights reserved.Adu</h4>
+        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2356028345&site=qq&menu=yes">
+            <img border="0" src="http://wpa.qq.com/pa?p=2:2356028345:41" alt="点击这里给我发消息" title="点击这里给我发消息"/> <br>
+            <P> 最美的风景.最美的你!</p>
+        </a>
+    </section>
+
+</div>
+
+</body>
+<script>
+    var fnTextPopup = function (arr, options) {
+        // arr参数是必须的
+        if (!arr || !arr.length) {
+            return;
+        }
+        // 主逻辑
+        var index = 0;
+        document.documentElement.addEventListener('click', function (event) {
+            var x = event.pageX, y = event.pageY;
+            var eleText = document.createElement('span');
+            eleText.className = 'text-popup';
+            this.appendChild(eleText);
+            if (arr[index]) {
+                eleText.innerHTML = arr[index];
+            } else {
+                index = 0;
+                eleText.innerHTML = arr[0];
+            }
+            // 动画结束后删除自己
+            eleText.addEventListener('animationend', function () {
+                eleText.parentNode.removeChild(eleText);
+            });
+            // 位置
+            eleText.style.left = (x - eleText.clientWidth / 2) + 'px';
+            eleText.style.top = (y - eleText.clientHeight) + 'px';
+            // index递增
+            index++;
+        });
+    };
+
+    fnTextPopup(['富强', '民主', '文明', '和谐', '自由', '平等', '公正', '法治', '爱国', '敬业', '诚信', '友善']);
+</script>
+</html>

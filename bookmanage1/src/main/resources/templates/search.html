@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>查找书籍</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/look.css">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<br><br>
+<div id="for">
+    <form method="post" th:action="@{/searchBook}" th:object="${book}">
+        <div class="input-group" id="forl">
+            <input type="text" class="form-control" placeholder="搜索书籍名字" name="bname">
+            <span class="input-group-addon"><input type="submit" value="搜索"> </span>
+        </div>
+
+    </form>
+    <br><br>
+    <table class="table table-hover" th:if="${searbook}!=null">
+        <tr>
+            <td>书籍编号</td>
+            <td>书籍名字</td>
+            <td>可借阅书籍数量</td>
+            <td>书籍出版社</td>
+            <td>书籍类目</td>
+            <td>发布人</td>
+            <td>发布时间</td>
+        </tr>
+        <tr th:each="book,start:${searbook}">
+            <td th:text="${book.bno}"></td>
+
+            <td th:text="${book.bname}"  onclick="location.href='http://www.baidu.com'"></td>
+
+            <td th:text="${book.bnumber}"></td>
+            <td th:text="${book.btest}"></td>
+            <td th:text="${book.btype}"></td>
+            <td th:text="${book.publisher}"></td>
+            <td th:text="${book.btime}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

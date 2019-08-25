@@ -1,0 +1,59 @@
+*{
+    margin:0px;
+    padding: 0px;
+}
+html,body {
+    width: 100%;
+    height: 100%;
+
+}
+body{
+    min-width:900px;
+    background: url("/images/welcome.jpg") no-repeat top left;
+    background-size: cover;
+}
+input{
+    border-radius: 5px;
+}
+#login {
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#welcome{
+    color: #FFFF;
+}
+#zhuce{
+    float: right;
+}
+
+
+
+.code
+{
+    font-family:Arial;
+    font-style:italic;
+    color:blue;
+    font-size:25px;
+    border:0;
+    font-weight:bolder;
+    float:right;
+    cursor:pointer;
+    background-color:#D8B7E3;
+    display: inline;
+}
+span {
+    text-decoration:none;
+    font-size:12px;
+    color:#288bc4;
+    padding-left:10px;
+}
+
+span:hover {
+    text-decoration:underline;
+    cursor:pointer;
+}
+
+
